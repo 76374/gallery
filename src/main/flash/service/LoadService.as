@@ -30,7 +30,6 @@ package service
 		 */		
 		public function loadXML(path : String, id : String) : void
 		{
-			trace("loadXML "+path+" "+id);
 			if (!path || !id)
 			{
 				throw new ArgumentError("null or empty argument");
@@ -55,7 +54,7 @@ package service
 		public function getLoadedXML(id : String) : XML 
 		{
 			return _loadedXMLs[id] || null;
-		}
+		} 
 		
 		//
 		
@@ -83,7 +82,6 @@ package service
 		
 		private function handleFailedXMLLoad(e : Event) : void 
 		{
-			trace("handleFailedXMLLoad");
 			var loader : URLLoader = e.target as URLLoader;
 			var id : String = getLoaderId(loader);
 			clearXMLLoader(loader, id);

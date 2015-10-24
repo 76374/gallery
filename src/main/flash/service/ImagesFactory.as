@@ -4,7 +4,7 @@ package service
 	
 	import view.image.ImageView;
 
-	//TODO: it is seemed to be unnecessary
+	//TODO: remove since it seems to be unnecessary
 	public class ImagesFactory
 	{
 		public function ImagesFactory()

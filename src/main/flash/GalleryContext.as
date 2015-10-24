@@ -1,10 +1,10 @@
 package
 {
-	import controller.ImageHidingCommand;
-	import controller.ImageLoadCompleteCommand;
-	import controller.ImageLoadFailCommand;
+	import controller.HandleImageHideCommand;
+	import controller.HandleImageLoadedCommand;
+	import controller.HandleImageLoadFailCommand;
 	import controller.InitImageCommand;
-	import controller.event.AppEvent;
+	import controller.event.InitEvent;
 	import controller.init.InitLocationModelCommand;
 	import controller.init.LoadCompleteCommand;
 	import controller.init.LoadImagesXMLCommand;
@@ -46,11 +46,11 @@ package
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, SetupStageCommand, ContextEvent);
 			commandMap.mapEvent(ContextEvent.STARTUP_COMPLETE, InitLocationModelCommand, ContextEvent);
 			commandMap.mapEvent(LoadServiceEvent.COMPLETE, LoadCompleteCommand, LoadServiceEvent);
-			commandMap.mapEvent(AppEvent.IMAGES_CONFIG_LOADED, ParseImagesXMLCommand, AppEvent);
-			commandMap.mapEvent(AppEvent.IMAGES_CONFIG_PARSED, InitImageCommand, AppEvent);
-			commandMap.mapEvent(ImageEvent.LOADED, ImageLoadCompleteCommand, ImageEvent);
-			commandMap.mapEvent(ImageEvent.LOAD_FAILED, ImageLoadFailCommand, ImageEvent);
-			commandMap.mapEvent(ImageEvent.HIDING, ImageHidingCommand, ImageEvent);
+			commandMap.mapEvent(InitEvent.IMAGES_CONFIG_LOADED, ParseImagesXMLCommand, InitEvent);
+			commandMap.mapEvent(InitEvent.IMAGES_CONFIG_PARSED, InitImageCommand, InitEvent);
+			commandMap.mapEvent(ImageEvent.LOADED, HandleImageLoadedCommand, ImageEvent);
+			commandMap.mapEvent(ImageEvent.LOAD_FAILED, HandleImageLoadFailCommand, ImageEvent);
+			commandMap.mapEvent(ImageEvent.HIDING, HandleImageHideCommand, ImageEvent);
 			//commandMap.mapEvent(ImageEvent.REMOVED, ImageRemovedCommand, ImageEvent);
 			
 			mediatorMap.mapView(ImageView, ImageMediator);

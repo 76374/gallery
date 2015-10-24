@@ -1,4 +1,4 @@
-package service
+package utils
 {
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -14,7 +14,7 @@ package service
 	 * it is canceled and the delay starts from the beginning.
 	 * After the delay is over, the very first event is dispatched only.
 	 * Can be used for decreasing amout of updates for some period of time
-	 * or avoid multiply aevent in one frame etc.
+	 * or avoid multiply events in one frame etc.
 	 */	
 	public class EventSieve//TODO: think about better name
 	{

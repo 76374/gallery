@@ -27,7 +27,8 @@ package controller
 		public override function execute() : void
 		{
 			var path : String = appData.getNextImagePath();
-			var firstPath : String;//to avoid infinity loop all images fit to area
+			var firstPath : String;//to avoid infinity loop when all images fit to area
+			//getting next path of image that is not displayed
 			while (locations.contain(path) || path == firstPath)
 			{
 				if (!firstPath)

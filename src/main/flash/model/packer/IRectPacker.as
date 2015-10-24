@@ -1,4 +1,4 @@
-package model
+package model.packer
 {
 	import flash.geom.Rectangle;
 

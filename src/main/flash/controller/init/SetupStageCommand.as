@@ -3,6 +3,8 @@ package controller.init
 	import flash.display.Sprite;
 	import flash.display.StageScaleMode;
 	
+	import model.constant.AppConstants;
+	
 	import org.robotlegs.mvcs.Command;
 	
 	public class SetupStageCommand extends Command
@@ -13,7 +15,7 @@ package controller.init
 			
 			var imagesArea : Sprite = new Sprite();
 			contextView.addChild(imagesArea);
-			injector.mapValue(Sprite, imagesArea, "imagesArea");
+			injector.mapValue(Sprite, imagesArea, AppConstants.IMAGES_AREA_NAME);
 		}
 	}
 }

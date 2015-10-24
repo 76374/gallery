@@ -5,9 +5,13 @@ package model
 	import flash.utils.Dictionary;
 	
 	import model.event.LocationEvent;
+	import model.packer.IRectPacker;
 	
 	import org.robotlegs.mvcs.Actor;
 
+	/**
+	 *  Finds and reperesents positions of display objects.
+	 */	
 	public class ObjectsLocationModel extends Actor
 	{
 		private static const DEFAULT_SPACE : Number = 0;
@@ -47,11 +51,6 @@ package model
 			_space = space;
 		}
 		
-		/*public function addObject(id : String, width : Number, height : Number) : void
-		{
-			_locations[id] = new Rectangle(0, 0, width, height);
-		}*/
-		
 		/**
 		 * @param id - used to identify image in remove(), getPosition(), LocationEvent 
 		 * @param width
@@ -60,6 +59,10 @@ package model
 		 */		
 		public function addObjectIfItFit(id : String, width : Number, height : Number) : Boolean
 		{
+			if (!_packer)
+			{
+				throw new Error("Packer hasn't been set. Possibly init() wasn't called");
+			}
 			if (!id)
 			{
 				throw new ArgumentError("invalid id: " + id);
@@ -96,12 +99,10 @@ package model
 		
 		public function remove(id : String) : void
 		{
-			trace("remove " + id);
 			for (var key : String in _locations)
 			{
 				if (key == id)
 				{
-					trace("removed " + id);
 					delete _locations[id];
 					pack(dicToRectVec(_locations));
 					dispatch(new LocationEvent(LocationEvent.UPDATE));
@@ -114,42 +115,6 @@ package model
 		{
 			return _locations[id] != undefined;
 		}
-		
-		/*public function updatePlacement() : void
-		{
-			if (!_packer || !validSizeValue(_width) || !validSizeValue(_height))
-			{
-				return;
-			}
-			var extraObjects : Vector.<Rectangle> = _packer.pack(_objects, _width, _height);
-			if (extraObjects)
-			{
-				_extraObjectsIds = new Vector.<String>();
-				for each (var prect : PRect in extraObjects)
-				{
-					_extraObjectsIds.push(prect.id);
-				}
-			}
-			else
-			{
-				_extraObjectsIds = null;
-			}
-			dispatch(new LocationEvent(LocationEvent.UPDATE));
-		}*/
-		
-		/*public function get extraObjectsIds() : Vector.<String>
-		{
-			return _extraObjectsIds;
-		}*/
-		/*public function getIsFit(imageId : String) : Boolean
-		{
-			return !_extraObjectsIds || _extraObjectsIds.indexOf(imageId) == -1;
-		}*/
-		
-		/*public function get containExtraObjects() : Boolean
-		{
-			return _extraObjectsIds && _extraObjectsIds.length;
-		}*/
 		
 		public function getPosition(imageId : String) : Point
 		{

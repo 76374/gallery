@@ -1,9 +1,9 @@
 package controller.init
 {
-	import controller.event.AppEvent;
+	import controller.event.InitEvent;
 	
 	import model.AppModel;
-	import model.constant.ConfigItemId;
+	import model.constant.AppConstants;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -19,7 +19,7 @@ package controller.init
 		
 		public override function execute() : void
 		{
-			var xml : XML = loadService.getLoadedXML(ConfigItemId.IMAGES_XML);
+			var xml : XML = loadService.getLoadedXML(AppConstants.IMAGES_XML_ID);
 			var imagesList : XMLList = xml.image;
 			for each(var imageXML : XML in imagesList)
 			{
@@ -31,7 +31,7 @@ package controller.init
 			}
 			appData.setLoopedPath(xml.@loop == "true" || xml.@loop != "1");
 			
-			dispatch(new AppEvent(AppEvent.IMAGES_CONFIG_PARSED));
+			dispatch(new InitEvent(InitEvent.IMAGES_CONFIG_PARSED));
 		}
 	}
 }

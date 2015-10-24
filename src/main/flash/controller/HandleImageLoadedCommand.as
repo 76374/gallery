@@ -8,7 +8,7 @@ package controller
 	
 	import model.ImageData;
 
-	public class ImageLoadCompleteCommand extends Command
+	public class HandleImageLoadedCommand extends Command
 	{
 		[Inject]
 		public var event : ImageEvent;
@@ -22,8 +22,9 @@ package controller
 		public override function execute() : void
 		{
 			var imageData : ImageData = event.imageProps;
+			//TODO: check if image is too big
 			var isImageAdded : Boolean = objectLocation.addObjectIfItFit(imageData.id, imageData.width, imageData.height);
-			//objectLocation.updatePlacement();
+			//if image fits to the area, load next one. Add to queue otherwise
 			if (isImageAdded)
 			{
 				commandMap.execute(InitImageCommand);

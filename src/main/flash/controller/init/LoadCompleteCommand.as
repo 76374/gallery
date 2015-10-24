@@ -1,8 +1,8 @@
 package controller.init
 {
-	import controller.event.AppEvent;
+	import controller.event.InitEvent;
 	
-	import model.constant.ConfigItemId;
+	import model.constant.AppConstants;
 	
 	import org.robotlegs.mvcs.Command;
 	
@@ -15,9 +15,9 @@ package controller.init
 		
 		public override function execute() : void 
 		{
-			if (event.targetId == ConfigItemId.IMAGES_XML)
+			if (event.targetId == AppConstants.IMAGES_XML_ID)
 			{
-				dispatch(new AppEvent(AppEvent.IMAGES_CONFIG_LOADED));
+				dispatch(new InitEvent(InitEvent.IMAGES_CONFIG_LOADED));
 			}
 		}
 	}

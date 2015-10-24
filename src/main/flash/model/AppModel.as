@@ -46,22 +46,34 @@ package model
 			_imagePathCount = 0;
 		}
 		
+		/**
+		 * Will the 1st path be returned in getNextImagePath() after last one.
+		 * @param value
+		 */		
 		public function setLoopedPath(value : Boolean) : void
 		{
 			_loopedPath = value;
 		}
 		
+		/**
+		 * Store images that are not on the display. 
+		 * @param data
+		 */		
 		public function addImageToQueue(data : ImageData) : void 
 		{
 			_imageQueue.push(data);
 		}
 		
+		/**
+		 * Removes first image the queue and returns it. 
+		 * @return 
+		 */		
 		public function shiftImageFromQueue() : ImageData
 		{
 			return _imageQueue.shift();
 		}
 		
-		public function hasImageQueue() : Boolean
+		public function hasImagesInQueue() : Boolean
 		{
 			return _imageQueue.length > 0;
 		}

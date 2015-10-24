@@ -1,8 +1,8 @@
-package model
+package model.packer
 {
 	import flash.geom.Rectangle;
 	/**
-	 * This is port from js project posted here: https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js
+	 * Simple packer from https://github.com/jakesgordon/bin-packing/blob/master/js/packer.js
 	 * + Added rect sorting for better results.
 	 * + Added rect that don't fit (as result after packing)
 	 * + Added space between rects

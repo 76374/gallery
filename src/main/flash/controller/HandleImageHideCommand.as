@@ -8,7 +8,7 @@ package controller
 	
 	import model.ImageData;
 	
-	public class ImageHidingCommand extends Command
+	public class HandleImageHideCommand extends Command
 	{
 		[Inject]
 		public var event : ImageEvent;
@@ -24,7 +24,8 @@ package controller
 			var imageProps : ImageData = event.imageProps;
 			objectLocation.remove(imageProps.id);
 			
-			if (appModel.hasImageQueue()) 
+			//check if there is image that is already loaded and hided
+			if (appModel.hasImagesInQueue()) 
 			{
 				var imageData : ImageData = appModel.shiftImageFromQueue();
 				var isImageAdded : Boolean = objectLocation.addObjectIfItFit(imageData.id, imageData.width, imageData.height);
