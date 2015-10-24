@@ -1,0 +1,36 @@
+<assembly>
+    <id>release</id>
+    <includeBaseDirectory>false</includeBaseDirectory>
+    <formats>
+        <format>tar</format>
+    </formats>
+    <fileSets>
+        <fileSet>
+            <directory>configs</directory>
+            <outputDirectory>/${artifactId}/</outputDirectory>
+            <includes>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <directory>gfx</directory>
+            <outputDirectory>/${artifactId}/gfx</outputDirectory>
+            <includes>
+                <include>*.swf</include>
+                <include>*.jpg</include>
+            </includes>
+        </fileSet>
+       
+    </fileSets>
+    <dependencySets>
+        <dependencySet>
+			<useProjectAttachments>true</useProjectAttachments>
+			
+			<outputDirectory>/${artifactId}</outputDirectory>
+			<outputFileNameMapping>shared.swf</outputFileNameMapping>
+			<includes>
+				<include>${project.groupId}:${project.artifactId}:swf:swf</include>
+			</includes>
+		</dependencySet>
+    </dependencySets>
+</assembly>
