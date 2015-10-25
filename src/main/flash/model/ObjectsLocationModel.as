@@ -57,7 +57,7 @@ package model
 		 * @param height
 		 * @return true if object has been added and false otherwise
 		 */		
-		public function addObjectIfItFit(id : String, width : Number, height : Number) : Boolean
+		public function addObject(id : String, width : Number, height : Number) : Boolean
 		{
 			if (!_packer)
 			{

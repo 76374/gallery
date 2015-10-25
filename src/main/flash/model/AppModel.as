@@ -1,6 +1,5 @@
 package model
 {
-
 	public class AppModel
 	{
 		private var _imagePaths : Vector.<String>;
