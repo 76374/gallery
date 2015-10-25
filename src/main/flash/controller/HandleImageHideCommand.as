@@ -28,7 +28,7 @@ package controller
 			if (appModel.hasImagesInQueue()) 
 			{
 				var imageData : ImageData = appModel.shiftImageFromQueue();
-				var isImageAdded : Boolean = objectLocation.addObjectIfItFit(imageData.id, imageData.width, imageData.height);
+				var isImageAdded : Boolean = objectLocation.addObject(imageData.id, imageData.width, imageData.height);
 				if (!isImageAdded)
 				{
 					appModel.addImageToQueue(imageData);

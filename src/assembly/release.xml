@@ -6,18 +6,19 @@
     </formats>
     <fileSets>
         <fileSet>
-            <directory>configs</directory>
+            <directory>config</directory>
             <outputDirectory>/${artifactId}/</outputDirectory>
             <includes>
                 <include>*.xml</include>
             </includes>
         </fileSet>
         <fileSet>
-            <directory>gfx</directory>
-            <outputDirectory>/${artifactId}/gfx</outputDirectory>
-            <includes>
-                <include>*.swf</include>
+            <directory>content</directory>
+            <outputDirectory>/${artifactId}/content</outputDirectory>
+            <includes>                
                 <include>*.jpg</include>
+				<include>*.jpeg</include>
+				<include>*.png</include>
             </includes>
         </fileSet>
        
