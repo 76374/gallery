@@ -1,0 +1,17 @@
+<images loop="true">
+	<image path="content/1.jpg" />
+	<image path="content/2.png" />
+	<image path="content/3.jpg" />
+	<image path="content/4.jpg" />
+	<image path="content/5.png" />
+	<image path="content/6.jpg" />
+	<image path="content/7.jpg" />
+	<image path="content/8.png" />
+	<image path="content/9.jpg" />
+	<image path="content/10.jpeg" />
+	<image path="content/11.jpg" />
+	<image path="content/12.jpg" />
+	<image path="content/13.jpg" />
+	<image path="content/14.jpg" />
+	<image path="content/15.png" />
+</images>
