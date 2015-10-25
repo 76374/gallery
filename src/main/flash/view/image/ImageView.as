@@ -1,7 +1,6 @@
 package view.image
 {
 	import com.greensock.TweenLite;
-	import com.greensock.easing.Elastic;
 	import com.greensock.easing.Expo;
 	
 	import flash.display.Loader;
@@ -9,7 +8,6 @@ package view.image
 	import flash.events.IOErrorEvent;
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
-	import flash.utils.setTimeout;
 	
 	import org.osflash.signals.ISignal;
 	import org.osflash.signals.Signal;
@@ -221,8 +219,8 @@ package view.image
 }
 
 import com.greensock.TweenLite;
-import com.greensock.easing.Elastic;
 import com.greensock.easing.Expo;
+import com.greensock.easing.Quart;
 
 import flash.display.DisplayObject;
 
@@ -297,10 +295,10 @@ class DefaultHideAnimator extends AnimatorBase implements ISimpleAnimator
 
 class DefaultPositionAnimator extends AnimatorBase implements IPositionAnimator
 {
-	public static const MOVE_TIME : Number = 1;
+	public static const MOVE_TIME : Number = 0.5;
 	
 	public function animate(target : DisplayObject, x : Number, y : Number) : void
 	{	
-		_tween = TweenLite.to(target, MOVE_TIME, {x : x, y : y, ease : Elastic.easeOut, onComplete : onComplete});
+		_tween = TweenLite.to(target, MOVE_TIME, {x : x, y : y, ease : Quart.easeOut, onComplete : onComplete});
 	}
 }
