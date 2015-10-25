@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent> 
-		<groupId>org.abolbat.testtask</groupId>
-		<artifactId>as3_shared</artifactId>
-		<version>0.1-SNAPSHOT</version>
-	</parent>
 	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.abolbat.testtask</groupId>
 	<artifactId>gallery</artifactId>
-	<name>Gallery (test task)</name>
+	<name>Gallery</name>
+	<version>0.1-SNAPSHOT</version>
 	<packaging>swf</packaging>
 	
 	<properties>
+		<flex.sdk.version>4.5.1.21328</flex.sdk.version>
+		<source.directory>src/main/flash</source.directory>
+		<test.directory>src/test/flash</test.directory>
+		<flexmojos.version>4.0-RC2</flexmojos.version>
+		<flexunit.version>4.0-rc-1</flexunit.version>
 		<mainFile>Gallery.as</mainFile>
 	</properties>
   
 	<dependencies>
+	
+		<dependency>
+			<groupId>com.adobe.flex.framework</groupId>
+			<artifactId>flex-framework</artifactId>
+			<version>${flex.sdk.version}</version>
+			<type>pom</type>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.adobe.flexunit</groupId>
+			<artifactId>flexunit</artifactId>
+			<version>${flexunit.version}</version>
+			<type>swc</type>
+			<scope>test</scope>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.robotlegs</groupId>
@@ -40,5 +56,72 @@
 		</dependency>
 		
 	</dependencies>
-
+	
+	<repositories>
+		<repository>
+			<id>flex-mojos-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+   </repositories>
+   
+   <pluginRepositories>
+		<pluginRepository>
+			<id>flex-mojos-plugin-repository</id>
+			<url>http://repository.sonatype.org/content/groups/flexgroup</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+   
+   <build>
+		<sourceDirectory>${source.directory}</sourceDirectory>
+		<testSourceDirectory>${test.directory}</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.sonatype.flexmojos</groupId>
+				<artifactId>flexmojos-maven-plugin</artifactId>
+				<version>${flexmojos.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<sourceFile>${mainFile}</sourceFile>
+					<debug>true</debug>
+					
+					<includeTestFiles>
+						<includeTestFile>*Test.as</includeTestFile>
+					</includeTestFiles>
+	
+				</configuration>
+			</plugin>
+			<!-- Moves all dependecy SWC to target folder-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>process-sources</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<type>swc</type>
+							<excludeTypes>rb.swc</excludeTypes>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<stripVersion>true</stripVersion>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>			
+		</plugins>
+	</build>
 </project>
